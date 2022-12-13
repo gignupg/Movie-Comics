@@ -50,7 +50,7 @@ function App() {
                         </tr>
                       </thead>
                       <tbody>
-                        {elem.text.vocabulary.map(([phrase, definition]) => (
+                        {elem.text.vocabulary.map(([phrase, definition]: [string, string]) => (
                           <tr>
                             <td>{phrase}</td>
                             <td>{definition}</td>
