@@ -20,9 +20,6 @@ function App() {
       <div className="row">
         <h2>Call Me A**hole One More Time</h2>
       </div>
-      <div className='row'>
-        <img id='banner' src={require('./assets/images/banner.png')} alt=''></img>
-      </div>
       {data.map(elem => (
         <div className="row">
           {elem.video &&
