@@ -2,7 +2,8 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-video {
+video,
+img {
   width: 100%;
   height: 100%;
 }
