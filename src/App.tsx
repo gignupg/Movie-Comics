@@ -38,7 +38,7 @@ function App() {
                 <div className="collapsible-header"><i className="material-icons">subtitles</i>Subtitles</div>
                 <div className="collapsible-body"><span className='flow-text'>{elem.text.subtitle}</span></div>
               </li>
-              {elem.text.vocabulary.length &&
+              {elem.text.vocabulary.length > 0 &&
                 <li>
                   <div className="collapsible-header"><i className="material-icons">school</i>Vocabulary</div>
                   <div className="collapsible-body left-align">

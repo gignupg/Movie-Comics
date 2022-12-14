@@ -65,7 +65,6 @@ const data = [
     { image: require('./assets/images/image24.png') },
     { audio: require('./assets/audios/audio24.mp4') },
     { text: require('./assets/text').text24 },
-    { image: require('./assets/images/image25.png') },
     { audio: require('./assets/audios/audio25.mp4') },
     { text: require('./assets/text').text25 },
     { image: require('./assets/images/image26.png') },
