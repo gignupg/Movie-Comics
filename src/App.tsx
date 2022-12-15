@@ -20,6 +20,16 @@ function App() {
       <div className="row">
         <h2>Call Me A**hole One More Time</h2>
       </div>
+      <div className="row">
+        <h3>Introduction</h3>
+      </div>
+      <div className="row">
+        <p className="flow-text col s8 offset-s2">
+          Hancock is a superhero that people hate because he's very careless, damaging buildings and streets.
+          He's visiting his human friend Ray and his wife Mary but his landing is very wreckless, damaging the street.
+          The kids who are playing in the street don't like Hancock. Particularly a French kid named Michel.
+        </p>
+      </div>
       {data.map(elem => (
         <div className="row">
           {elem.video &&
@@ -36,7 +46,21 @@ function App() {
             <ul className="collapsible col s10 offset-s1">
               <li>
                 <div className="collapsible-header"><i className="material-icons">subtitles</i>Subtitles</div>
-                <div className="collapsible-body"><span className='flow-text'>{elem.text.subtitle}</span></div>
+                <div className="collapsible-body">
+                  {elem.text.subtitles.map((subtitle: string) => (
+                    <p className='flow-text'>{subtitle}</p>
+                  ))
+                  }
+                </div>
+              </li>
+              <li>
+                <div className="collapsible-header"><i className="material-icons">g_translate</i>Translation</div>
+                <div className="collapsible-body">
+                  {elem.text.translation.map((translation: string) => (
+                    <p className='flow-text'>{translation}</p>
+                  ))
+                  }
+                </div>
               </li>
               {elem.text.vocabulary.length > 0 &&
                 <li>
