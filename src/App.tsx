@@ -1,36 +1,59 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import M from "materialize-css";
-import data from './data';
+import media from './media';
+import content from './content';
+
+type Region = 'en' | 'es' | 'de';
+
+const language = window.navigator.language.replace(/-.*/, '');
+const defLang = language === 'es' || language === 'de' ? language : 'en';
 
 function App() {
+  const [region, setRegion] = useState<Region>(defLang);
+
+  const updateRegion = (elem: Element) => {
+    setRegion(elem.id as Region);
+  };
+
   useEffect(() => {
-    var elements = document.querySelectorAll('.collapsible');
+    const elements = document.querySelectorAll('.collapsible');
     for (let i = 0; i < elements.length; i++) {
       const elem = elements[i];
       if (elem) M.Collapsible.init(elem, { accordion: false });
+    }
+    const elem = document.querySelector('.tabs');
+    if (elem) {
+      const instance = M.Tabs.init(elem, { onShow: updateRegion });
+      instance.select(defLang);
     }
   }, []);
 
   return (
     <center>
+      <div className="col s12">
+        <ul className="tabs">
+          <li className="tab col s3"><a href="#en">English</a></li>
+          <li className="tab col s3"><a href="#es">Español</a></li>
+          <li className="tab col s3"><a href="#de">Deutsch</a></li>
+        </ul>
+      </div>
+      <div id="en" className="col s12"></div>
+      <div id="es" className="col s12"></div>
+      <div id="de" className="col s12"></div>
       <div className="row">
-        <h1>Hancock</h1>
+        <h1>{content.title[region]}</h1>
       </div>
       <div className="row">
-        <h2>Call Me A**hole One More Time</h2>
+        <p className="flow-text col s8 offset-s2">{content.usageInstructions[region]}</p>
       </div>
       <div className="row">
-        <h3>Introduction</h3>
+        <h3>{content.context[region]}</h3>
       </div>
       <div className="row">
-        <p className="flow-text col s8 offset-s2">
-          Hancock is a superhero that people hate because he's very careless, damaging buildings and streets.
-          He's visiting his human friend Ray and his wife Mary but his landing is very wreckless, damaging the street.
-          The kids who are playing in the street don't like Hancock. Particularly a French kid named Michel.
-        </p>
+        <p className="flow-text col s8 offset-s2">{content.introductoryText[region]}</p>
       </div>
-      {data.map(elem => (
+      {media.map((elem) => (
         <div className="row">
           {elem.video &&
             <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
@@ -45,9 +68,9 @@ function App() {
             </div>
           }
           {elem.audio &&
-            <div className="col s12 m10 offset-m1">
+            <div className="col s12 m10 offset-m1" >
               <div className='row'>
-                <h4 className="header">Audio Dialog</h4>
+                <h4 className="header">{content.audio[region]}</h4>
               </div>
               <div className="card horizontal">
                 <div className="card-stacked">
@@ -82,26 +105,29 @@ function App() {
           {elem.text &&
             <ul className="collapsible col s12 m10 offset-m1">
               <li>
-                <div className="collapsible-header"><i className="material-icons">subtitles</i>Subtitles</div>
+                <div className="collapsible-header"><i className="material-icons">subtitles</i>{content.subtitles[region]}</div>
                 <div className="collapsible-body">
-                  {elem.text.subtitles.map((subtitle: string) => (
+                  {elem.text.subtitles.en.map((subtitle: string) => (
                     <p className='flow-text'>{subtitle}</p>
                   ))
                   }
                 </div>
               </li>
-              <li>
-                <div className="collapsible-header"><i className="material-icons">g_translate</i>Translation</div>
-                <div className="collapsible-body">
-                  {elem.text.translation.map((translation: string) => (
-                    <p className='flow-text'>{translation}</p>
-                  ))
-                  }
-                </div>
-              </li>
+              {region !== 'en' &&
+                <li>
+                  <div className="collapsible-header"><i className="material-icons">g_translate</i>{content.translation[region]}</div>
+                  <div className="collapsible-body">
+                    {elem.text.translation[region].map((translation: string) => (
+                      <p className='flow-text'>{translation}</p>
+                    ))
+                    }
+                  </div>
+                </li>
+              }
+
               {elem.text.vocabulary.length > 0 &&
                 <li>
-                  <div className="collapsible-header"><i className="material-icons">school</i>Vocabulary</div>
+                  <div className="collapsible-header"><i className="material-icons">school</i>{content.vocabulary[region]}</div>
                   <div className="collapsible-body left-align">
                     <table className='striped'>
                       <thead>
@@ -111,7 +137,7 @@ function App() {
                         </tr>
                       </thead>
                       <tbody>
-                        {elem.text.vocabulary.map(([phrase, definition]: [string, string]) => (
+                        {elem.text.vocabulary.map(([phrase, definition]: string[]) => (
                           <tr>
                             <td>{phrase}</td>
                             <td>{definition}</td>
