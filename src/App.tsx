@@ -3,6 +3,7 @@ import './App.css';
 import M from "materialize-css";
 import media from './media';
 import content from './content';
+import googleForm from './googleForm';
 
 type Region = 'en' | 'es' | 'de';
 
@@ -157,6 +158,19 @@ function App() {
         </div>
       ))
       }
+      <div className='row'>
+        <iframe
+          src={googleForm[region]}
+          width='100%'
+          height='1600'
+          frameBorder="0"
+          marginHeight={0}
+          marginWidth={0}
+          title="Google Forms"
+        >
+          Loading…
+        </iframe>
+      </div>
     </center >
   );
 }

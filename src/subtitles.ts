@@ -120,7 +120,7 @@ const subtitles = {
         de: ["Wie denkst du, wird das Gespräch mit seiner Mutter laufen?"]
     },
     text26: {
-        en: ["Landing like that on the street is also on the uncool side!"],
+        en: ["Landing like that in the street is also on the uncool side!"],
         es: ["¡Aterrizar así en la calle también está en el lado desagradable!"],
         de: ["So auf der Straße zu landen ist auch uncool!"]
     },
