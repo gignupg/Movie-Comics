@@ -20,7 +20,7 @@ const content = {
         de: "Hancock ist ein Superheld, den die Leute hassen, weil er völlig unvorsichtig ist und Gebäude und Straßen beschädigt. Er besucht seinen menschlichen Freund Ray und dessen Frau Mary, aber seine Landung ist sehr rücksichtslos und beschädigt die Straße. Die Kinder, die in der Straße spielen, mögen Hancock nicht. Insbesondere ein französisches Kind namens Michel."
     },
     audio: {
-        en: "Audio Dilog",
+        en: "Audio Dialog",
         es: "Diálogo de audio",
         de: "Audiodialog"
     },
